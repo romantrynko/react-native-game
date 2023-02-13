@@ -1,12 +1,12 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
-import { Title } from '../../components';
+import { Title } from '../../components/ui';
 
 import { useGameScreen } from './useGameScreen';
 
 function GameScreen({ userNumber }) {
-  const { generateRandomBetween } = useGameScreen(userNumber);
+  const { generateRandomBetween, currentGuess, setCurrentGuess } = useGameScreen(userNumber);
 
   return (
     <View style={styles.root}>

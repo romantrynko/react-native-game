@@ -16,5 +16,7 @@ export const useGameScreen = (userNumber) => {
 
   return {
     generateRandomBetween,
+    currentGuess,
+    setCurrentGuess,
   };
 };

@@ -1,2 +1,2 @@
-export { default as Title } from './Title';
-export { default as PrimaryButton } from './PrimaryButton';
+export * from './game';
+export * from './ui';

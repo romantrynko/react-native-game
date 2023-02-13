@@ -1,6 +1,6 @@
 import { StyleSheet, TextInput, View } from 'react-native';
 
-import { PrimaryButton } from '../../components';
+import { PrimaryButton } from '../../components/ui';
 import Colors from '../../constants/colors';
 
 import { useStartGameScreen } from './useStartGameScreen';
