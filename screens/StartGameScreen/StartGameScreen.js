@@ -34,6 +34,8 @@ const StartGameScreen = ({ onNumberConfirm }) => {
   );
 };
 
+export default StartGameScreen;
+
 const styles = StyleSheet.create({
   root: {
     justifyContent: 'center',
@@ -68,4 +70,3 @@ const styles = StyleSheet.create({
   }
 });
 
-export default StartGameScreen;
