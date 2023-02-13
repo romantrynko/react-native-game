@@ -1,22 +1,39 @@
-import { useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
 export const useGameScreen = (userNumber) => {
-  const initialGuess = generateRandomBetween(1, 100, userNumber);
-  const [currentGuess, setCurrentGuess] = useState(initialGuess);
+  const [currentGuess, setCurrentGuess] = useState(null);
 
-  const generateRandomBetween = (min, max, exclude) => {
+  let minBoundary = 1;
+  let maxBoundary = 100;
+  
+  useEffect(() => {
+    const initialGuess = generateRandomBetween(minBoundary, maxBoundary, userNumber);
+    setCurrentGuess(initialGuess);
+  }, [userNumber]);
+  
+  const generateRandomBetween = useCallback((min, max, exclude) => {
     const randomNum = Math.floor(Math.random() * (max - min)) + min;
-
+    
     if (randomNum === exclude) {
       return generateRandomBetween(min, max, exclude);
     } else {
       return randomNum;
     }
+  }, [userNumber]);
+
+  const nextGuessHandler = (direction) => {
+    direction === 'lower' ?
+      maxBoundary = currentGuess - 1
+      :
+      minBoundary = currentGuess + 1;
+    
+    const newRandomNum = generateRandomBetween(minBoundary, maxBoundary, currentGuess);
+
+    setCurrentGuess(newRandomNum);
   };
 
   return {
-    generateRandomBetween,
     currentGuess,
-    setCurrentGuess,
+    nextGuessHandler,
   };
 };

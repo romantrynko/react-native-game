@@ -1,19 +1,24 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
-import { Title } from '../../components/ui';
+import NumberContainer from '../../components/game/NumberContainer';
+import { Title, PrimaryButton } from '../../components/ui';
 
 import { useGameScreen } from './useGameScreen';
 
 function GameScreen({ userNumber }) {
-  const { generateRandomBetween, currentGuess, setCurrentGuess } = useGameScreen(userNumber);
+  const { currentGuess, nextGuessHandler } = useGameScreen(userNumber);
 
   return (
     <View style={styles.root}>
       <Title>Opponent's Choise</Title>
-
+      <NumberContainer>{currentGuess}</NumberContainer>
       <View>
         <Text>Higher or lower?</Text>
+        <View>
+          <PrimaryButton onPress={nextGuessHandler.bind(this, 'lower')}>-</PrimaryButton>
+          <PrimaryButton onPress={nextGuessHandler.bind(this, 'greater')}>+</PrimaryButton>
+        </View>
       </View>
     </View>
   );

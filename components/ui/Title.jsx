@@ -15,10 +15,10 @@ const styles = StyleSheet.create({
   root: {
     fontSize: 24,
     fontWeight: 'bold',
-    color: Colors.yellow,
+    color: Colors.white,
     textAlign: 'center',
     borderWidth: 2,
-    borderColor: Colors.yellow,
+    borderColor: Colors.white,
     borderRadius: 15,
     padding: 12,
   }
