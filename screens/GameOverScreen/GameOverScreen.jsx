@@ -1,8 +1,9 @@
 import React from 'react';
+import { Text } from 'react-native';
 
 const GameOverScreen = () => {
   return (
-    <div>GameOverScreen</div>
+    <Text>GameOverScreen</Text>
   );
 };
 

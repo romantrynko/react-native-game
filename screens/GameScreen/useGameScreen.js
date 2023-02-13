@@ -1,15 +1,23 @@
 import { useCallback, useEffect, useState } from 'react';
+import { Alert } from 'react-native';
 
-export const useGameScreen = (userNumber) => {
+export const useGameScreen = (userNumber, onGameOver) => {
   const [currentGuess, setCurrentGuess] = useState(null);
 
   let minBoundary = 1;
   let maxBoundary = 100;
   
   useEffect(() => {
-    const initialGuess = generateRandomBetween(minBoundary, maxBoundary, userNumber);
+    const initialGuess = generateRandomBetween(1, 100, userNumber);
+
     setCurrentGuess(initialGuess);
   }, [userNumber]);
+
+  useEffect(() => {
+    if (currentGuess === userNumber) {
+      onGameOver();
+    }
+  }, [currentGuess, userNumber, onGameOver]);
   
   const generateRandomBetween = useCallback((min, max, exclude) => {
     const randomNum = Math.floor(Math.random() * (max - min)) + min;
@@ -22,6 +30,11 @@ export const useGameScreen = (userNumber) => {
   }, [userNumber]);
 
   const nextGuessHandler = (direction) => {
+    if ((direction === 'lower' && currentGuess < userNumber) || (direction === 'greater' && currentGuess > userNumber)) {
+      Alert.alert('Don\'t lie', 'You know that this is wrong...', [{text: 'Sorry!', style: 'cancel'}]);
+      return;
+    }
+
     direction === 'lower' ?
       maxBoundary = currentGuess - 1
       :

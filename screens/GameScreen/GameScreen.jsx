@@ -6,8 +6,8 @@ import { Title, PrimaryButton } from '../../components/ui';
 
 import { useGameScreen } from './useGameScreen';
 
-function GameScreen({ userNumber }) {
-  const { currentGuess, nextGuessHandler } = useGameScreen(userNumber);
+function GameScreen({ userNumber, onGameOver }) {
+  const { currentGuess, nextGuessHandler } = useGameScreen(userNumber, onGameOver);
 
   return (
     <View style={styles.root}>
